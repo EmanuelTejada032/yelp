@@ -1,11 +1,12 @@
 mapboxgl.accessToken = mapToken;
 const map = new mapboxgl.Map({
-    container: 'map',
-    style: 'mapbox://styles/mapbox/light-v10',
+    container: 'cluster-map',
+    style: 'mapbox://styles/mapbox/streets-v11',
     center: [-103.59179687498357, 40.66995747013945],
     zoom: 3
 });
 
+map.addControl(new mapboxgl.NavigationControl())
 
 // console.log(campgrounds)
 
@@ -75,7 +76,7 @@ map.on('load', function () {
         filter: ['!', ['has', 'point_count']],
         paint: {
             'circle-color': '#11b4da',
-            'circle-radius': 4,
+            'circle-radius': 5,
             'circle-stroke-width': 1,
             'circle-stroke-color': '#fff'
         }
