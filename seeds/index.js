@@ -26,37 +26,37 @@ const seedDB = async () => {
     await Campground.deleteMany({});
     await Review.deleteMany({})
 
-    // for (let i = 0; i < 50; i++) {
-    //     const random1000 = Math.floor(Math.random() * 1000);
-    //     const price = Math.floor(Math.random() * 20) + 10;
-    //     const camp = new Campground({
-    //         //YOUR USER ID
-    //         author: '604ce209a1f1530ca8e30d0a',
-    //         location: `${cities[random1000].city}, ${cities[random1000].state}`,
-    //         title: `${sample(descriptors)} ${sample(places)}`,
-    //         description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam dolores vero perferendis laudantium, consequuntur voluptatibus nulla architecto, sit soluta esse iure sed labore ipsam a cum nihil atque molestiae deserunt!',
-    //         price,
-    //         geometry: {
-    //             type: "Point",
-    //             coordinates: [
-    //                 cities[random1000].longitude,
-    //                 cities[random1000].latitude
-    //             ]
-    //         },
-    //         images: [
-    //             {
-    //                 url: 'https://res.cloudinary.com/emanueltejada/image/upload/v1610671000/YelpCamp/dalxzaf1se3lzydlohv4.jpg',
-    //                 filename: 'YelpCamp/dalxzaf1se3lzydlohv4.jpg'
+    for (let i = 0; i < 50; i++) {
+        const random1000 = Math.floor(Math.random() * 1000);
+        const price = Math.floor(Math.random() * 20) + 10;
+        const camp = new Campground({
+            //YOUR USER ID
+            author: '604d47a7a83ed0001505ae2f',
+            location: `${cities[random1000].city}, ${cities[random1000].state}`,
+            title: `${sample(descriptors)} ${sample(places)}`,
+            description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam dolores vero perferendis laudantium, consequuntur voluptatibus nulla architecto, sit soluta esse iure sed labore ipsam a cum nihil atque molestiae deserunt!',
+            price,
+            geometry: {
+                type: "Point",
+                coordinates: [
+                    cities[random1000].longitude,
+                    cities[random1000].latitude
+                ]
+            },
+            images: [
+                {
+                    url: 'https://res.cloudinary.com/emanueltejada/image/upload/v1610671000/YelpCamp/dalxzaf1se3lzydlohv4.jpg',
+                    filename: 'YelpCamp/dalxzaf1se3lzydlohv4.jpg'
                     
-    //             },
-    //             {
-    //                 url: 'https://res.cloudinary.com/emanueltejada/image/upload/v1610671000/YelpCamp/rq2slzo4zl1kyboumfid.jpg',
-    //                 filename: 'YelpCamp/rq2slzo4zl1kyboumfid.jpg'
-    //             }
-    //         ]
-    //     })
-    //     await camp.save();
-    // }
+                },
+                {
+                    url: 'https://res.cloudinary.com/emanueltejada/image/upload/v1610671000/YelpCamp/rq2slzo4zl1kyboumfid.jpg',
+                    filename: 'YelpCamp/rq2slzo4zl1kyboumfid.jpg'
+                }
+            ]
+        })
+        await camp.save();
+    }
 }
 
 seedDB().then(() => {
