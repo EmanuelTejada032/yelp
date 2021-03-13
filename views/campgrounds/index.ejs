@@ -1,7 +1,10 @@
 <% layout('layouts/boilerplate')%>
 <div id="cluster-map"></div>
 <h1>All Campgrounds</h1>
-
+<% if(noMatch !== 'undefined') { %>
+     <h2><%= noMatch %> </h2>
+     
+<% } %>
 <% for (let campground of campgrounds){%>
 <div class="card mb-3" >
     <div class="row">
