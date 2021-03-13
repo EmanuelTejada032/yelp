@@ -17,6 +17,9 @@
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
             <div class="navbar-nav ml-auto">
+                <% if(currentUser && currentUser.role === 'admin') { %>
+                    <a class="nav-link" href="/admin">Admin</a>
+                <% } %> 
                 <% if(!currentUser) {%>
                 <a class="nav-link" href="/login">Login</a>
                 <a class="nav-link" href="/register">Register</a>

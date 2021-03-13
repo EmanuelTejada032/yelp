@@ -23,8 +23,10 @@ const MongoDBStore = require('connect-mongo')(session);
 const userRoutes = require('./routes/users');
 const campgroundRoutes = require('./routes/campgrounds');
 const reviewRoutes = require('./routes/reviews');
+const adminRoutes = require('./routes/admin')
 
-const dbUrl = process.env.DB_URL  || 'mongodb://localhost:27017/yelp-camp'
+const dbUrl = ''  || 'mongodb://localhost:27017/yelp-camp'
+
 
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
@@ -38,7 +40,7 @@ db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", () => {
     console.log("Database connected");
 });
-
+console.log(dbUrl)
 const app = express();
 
 app.engine('ejs', ejsMate)
@@ -133,8 +135,9 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 app.use((req, res, next) => {
-    console.log(req.query)
-    res.locals.currentUser = req.user;
+   
+    res.locals.currentUser = req.user; 
+    console.log(res.locals.currentUser)
     res.locals.success = req.flash('success');
     res.locals.error = req.flash('error');
     next();
@@ -144,6 +147,7 @@ app.use((req, res, next) => {
 app.use('/', userRoutes);
 app.use('/campgrounds', campgroundRoutes)
 app.use('/campgrounds/:id/reviews', reviewRoutes)
+app.use('/admin', adminRoutes);
 
 
 app.get('/', (req, res) => {

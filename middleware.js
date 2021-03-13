@@ -52,3 +52,26 @@ module.exports.validateReview = (req, res, next) => {
         next();
     }
 }
+
+//Allow access to routes to an specific roles
+exports.authorize = (...roles) => {
+    return (req, res ,next) => {
+        if(req.originalUrl.includes('/reviews') && !roles.includes(req.user.role)){
+            const url = req.originalUrl.split('/').slice(0,3).join('/')
+            req.flash('error', 'Only users are allowed to leave or modify reviews');
+            return res.redirect(`${url}`);
+        }
+
+        if(req.originalUrl.includes('/campgrounds') && req.method === 'POST' && !roles.includes(req.user.role)){
+            req.flash('error', 'Only publisher or admin are allowed to publish a campground');
+            return res.redirect(`/campgrounds/new`);
+        }
+
+        if(!roles.includes(req.user.role)){
+            req.flash('error', 'not authorized to do that action');
+            return res.redirect(`/campgrounds`);
+        }
+
+        next();
+    }
+}
