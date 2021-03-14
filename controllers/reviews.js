@@ -6,7 +6,13 @@ module.exports.createReview = async (req, res) => {
     const review = new Review(req.body.review);
     review.author = req.user._id;
     campground.reviews.push(review);
-    await review.save();
+    try{
+        await review.save();
+    }catch(e){
+        req.flash('error', 'Not able to create new review');
+        return res.redirect(`/campgrounds/${campground._id}`);
+    }
+
     await campground.save();
     req.flash('success', 'Created new review!');
     res.redirect(`/campgrounds/${campground._id}`);
