@@ -6,12 +6,19 @@ const reviewSchema = new Schema({
     rating: Number,
     author: {
         type: Schema.Types.ObjectId,
-        ref: 'User'
-    }
+        ref: 'User',
+        required: true
+    },
+    campground: {
+        type: Schema.Types.ObjectId,
+        ref: 'Campground',
+        required: true
+      }
 });
 
-// Prevent user from submitting more than one review per bootcamp
-reviewSchema.index({ campground: 1, user: 1 }, { unique: true });
+
+// Prevent user from submitting more than one review per campground
+reviewSchema.index({ campground: 1, author: 1 }, { unique: true });
 
 module.exports = mongoose.model("Review", reviewSchema);
 

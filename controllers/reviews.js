@@ -5,11 +5,12 @@ module.exports.createReview = async (req, res) => {
     const campground = await Campground.findById(req.params.id);
     const review = new Review(req.body.review);
     review.author = req.user._id;
+    review.campground = campground._id;
     campground.reviews.push(review);
     try{
         await review.save();
     }catch(e){
-        req.flash('error', 'Not able to create new review');
+        req.flash('error', 'Can\'t create new review');
         return res.redirect(`/campgrounds/${campground._id}`);
     }
 
@@ -25,3 +26,4 @@ module.exports.deleteReview = async (req, res) => {
     req.flash('success', 'Successfully deleted review')
     res.redirect(`/campgrounds/${id}`);
 }
+
