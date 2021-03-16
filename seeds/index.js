@@ -10,7 +10,8 @@ const DB_URL = 'mongodb://localhost:27017/yelp-camp'
 mongoose.connect(DB_URL, {
     useNewUrlParser: true,
     useCreateIndex: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useFindAndModify: false
 });
 
 const db = mongoose.connection;
@@ -26,12 +27,12 @@ const seedDB = async () => {
     await Campground.deleteMany({});
     await Review.deleteMany({})
 
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 8; i++) {
         const random1000 = Math.floor(Math.random() * 1000);
         const price = Math.floor(Math.random() * 20) + 10;
         const camp = new Campground({
             //YOUR USER ID
-            author: '604fd07e507f560b4c9980ef',
+            author: '6050041d5f867700152917d2',
             location: `${cities[random1000].city}, ${cities[random1000].state}`,
             title: `${sample(descriptors)} ${sample(places)}`,
             description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam dolores vero perferendis laudantium, consequuntur voluptatibus nulla architecto, sit soluta esse iure sed labore ipsam a cum nihil atque molestiae deserunt!',

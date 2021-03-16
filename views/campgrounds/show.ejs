@@ -52,6 +52,19 @@
     </div>
     <div class="col-6">
         <div id='map' class="mb-3"></div>
+        <% if(!currentUser){ %>
+            <div class="alert alert-success" role="alert">
+                <h4 class="alert-heading">Hey!</h4>
+                <p>Please Login to leave a review</p>
+                <hr>
+              </div>
+        <% } %>
+        <% if(currentUser && currentUser.role === 'publisher'){ %>
+            <div class="alert alert-warning" role="alert">
+                <p>Only user can leave reviews</p>
+                
+              </div>
+        <% } %>
 
         <% if(currentUser && currentUser.role === 'user'){ %>
         <h2>Leave a Review</h2>

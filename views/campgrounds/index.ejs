@@ -23,6 +23,7 @@
                 <p class="card-text"><%= campground.description %></p>
                 <div class="indexReviews">
                     <% if(campground.averageRating && campground.averageRating> 0) {%>
+                        
                         <p class="starability-result" data-rating="<%=campground.averageRating%>">
                             Rated: <%= campground.averageRating %> stars
                         </p>

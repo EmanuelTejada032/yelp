@@ -37,7 +37,7 @@ reviewSchema.statics.getAverageRating = async function(campground) {
     try {
       if (obj[0]) {
         await this.model('Campground').findByIdAndUpdate(campground, {
-          averageRating: obj[0].averageRating
+          averageRating: Math.round(obj[0].averageRating)
          
         });
          } else {
