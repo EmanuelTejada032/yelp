@@ -12,6 +12,10 @@ const UserSchema = new Schema({
         type: String,
         enum: ['user', 'publisher'],
         default: 'user'
+    },
+    createdAt:{
+        type: Date,
+        default: Date.now
     }
 });
 

@@ -1,4 +1,5 @@
 <% layout('layouts/boilerplate')%>
+<link rel="stylesheet" href="/stylesheets/stars.css">
 <div id="cluster-map"></div>
 <h1>All Campgrounds</h1>
 <% if(noMatch !== 'undefined') { %>
@@ -20,6 +21,21 @@
             <div class="card-body">
                 <h5 class="card-title"><%= campground.title %> </h5>
                 <p class="card-text"><%= campground.description %></p>
+                <div class="indexReviews">
+                    <% if(campground.averageRating && campground.averageRating> 0) {%>
+                        <p class="starability-result" data-rating="<%=campground.averageRating%>">
+                            Rated: <%= campground.averageRating %> stars
+                        </p>
+                        <% } else { %>
+                            <p class="starability-result" data-rating="0">
+                                No reviews Yet
+                            </p>
+                        <% } %>
+                        <p class="ml-3" id="reviewsNumber">(<%=campground.reviews.length%>)</p>
+                </div>
+               
+
+
                 <p class="card-text">
                     <small class="text-muted"><%= campground.location%></small>
                 </p>
