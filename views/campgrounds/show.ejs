@@ -44,8 +44,12 @@
                 </form>   
             </div>
             <% } %>
-            <% if(currentUser && currentUser.role === 'user'){ %>
+            <% if(currentUser && currentUser.role === 'user' && !currentUser.userPlaces.includes(campground._id)){ %>
                 <a class="card-link btn btn-info" href="/campgrounds/<%=campground._id%>/favorites">Add to favorite</a>
+            <% } else if(currentUser && currentUser.role === 'user'){ %>
+                <form  class="d-inline m-3" action="/campgrounds/<%=campground._id%>/favorites?_method=DELETE" method="POST">
+                    <button class="btn btn-danger">Remove favorite</button>
+                </form>  
             <% } %>
             
             <div class="card-footer text-muted">

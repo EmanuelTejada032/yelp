@@ -35,10 +35,14 @@ module.exports.createCampground = async (req, res, next) => {
         limit: 1
     }).send()
     const campground = new Campground(req.body.campground);
+    const user = await User.findById(req.user._id)
     campground.geometry = geoData.body.features[0].geometry;
     campground.images = req.files.map(f => ({ url: f.path, filename: f.filename }));
     campground.author = req.user._id;
+    user.userPlaces.push(campground.id);
     await campground.save();
+    await user.save();
+
     
     req.flash('success', 'Successfully made a new campground!');
     res.redirect(`/campgrounds/${campground._id}`)
@@ -55,7 +59,7 @@ module.exports.showCampground = async (req, res,) => {
         req.flash('error', 'Cannot find that campground!');
         return res.redirect('/campgrounds');
     }
-    
+    console.log(req.user);
     
     res.render('campgrounds/show', { campground });
 }
@@ -88,6 +92,7 @@ module.exports.updateCampground = async (req, res) => {
 
 module.exports.deleteCampground = async (req, res) => {
     const { id } = req.params;
+    await User.findByIdAndUpdate(req.user._id, {$pull:{ userPlaces: id}});
     await Campground.findByIdAndDelete(id);
     req.flash('success', 'Successfully deleted campground')
     res.redirect('/campgrounds');
@@ -106,8 +111,19 @@ module.exports.getFavorites = async(req, res) => {
     const user = await User.findById(req.user._id).populate({
         path: 'userPlaces'
     });
-   
-    
-    
     res.render('campgrounds/favorites', {user});
+}
+
+module.exports.removeFavorite = async (req, res) => {
+    await User.findByIdAndUpdate(req.user._id, {$pull:{ userPlaces: req.params.id}});
+    if(req.params.id){
+        const id = req.params.id
+        req.flash('success', 'Removed from favorites');
+        return res.redirect(`/campgrounds/${id}`)
+    }else{
+        req.flash('success', 'Removed from favorites');
+        res.redirect(`/campgrounds/favorites`);
+    }
+    
+    
 }

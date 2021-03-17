@@ -1,7 +1,10 @@
 <% layout('layouts/boilerplate')%>
 
-<h1>Favorites places</h1>
-
+<% if(currentUser.role === 'user'){ %>
+  <h1>Favorites places</h1>
+<% } else { %>
+  <h1>Your places</h1>
+<% } %>
 
 <% user.userPlaces.forEach( (campground) => { %>
     <div class="card" style="width: 18rem;">
@@ -9,7 +12,14 @@
     <div class="card-body">
       <h5 class="card-title"><%= campground.title%></h5>
       <p class="card-text"><%= campground.location%></p>
-      <a href="/campgrounds/<%=campground._id%>" class="btn btn-primary">View place</a>
+      <a href="/campgrounds/<%=campground._id%>" class="btn btn-primary d-inline">View place</a>
+      <% if(currentUser.role === 'user'){ %>
+        <form class="d-inline" action="/campgrounds/<%=campground._id%>/favorites?_method=DELETE" method="POST">
+          <button class="btn btn-danger">Remove</button>
+        </form>
+      <% } %> 
+      
+
     </div>
   </div>
 <% }) %>
