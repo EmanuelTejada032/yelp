@@ -3,7 +3,7 @@ const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
 const mapBoxToken = process.env.MAPBOX_TOKEN;
 const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
 const { cloudinary } = require("../cloudinary");
-
+const User = require('../models/user')
 
 
 module.exports.index = async (req, res) => {
@@ -56,6 +56,7 @@ module.exports.showCampground = async (req, res,) => {
         return res.redirect('/campgrounds');
     }
     
+    
     res.render('campgrounds/show', { campground });
 }
 
@@ -90,4 +91,23 @@ module.exports.deleteCampground = async (req, res) => {
     await Campground.findByIdAndDelete(id);
     req.flash('success', 'Successfully deleted campground')
     res.redirect('/campgrounds');
+}
+
+module.exports.addFavorite = async (req, res) => {
+    const user = await User.findById(req.user._id)
+    const campground = await Campground.findById(req.params.id);
+    user.userPlaces.push(campground.id)
+    await user.save();
+    req.flash('success', 'Campground added to favorite');
+    res.redirect(`/campgrounds/${campground._id}`)
+}
+
+module.exports.getFavorites = async(req, res) => {
+    const user = await User.findById(req.user._id).populate({
+        path: 'userPlaces'
+    });
+   
+    
+    
+    res.render('campgrounds/favorites', {user});
 }

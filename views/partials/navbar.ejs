@@ -9,8 +9,15 @@
             <div class="navbar-nav">
                 <a class="nav-link" href="/">Home</a>
                 <a class="nav-link" href="/campgrounds">Campgrounds</a>
+                <% if(currentUser && currentUser.role !== 'admin'){ %>
+                    <% if(currentUser.role === 'user'){ %>
+                        <a class="nav-link" href="/campgrounds/favorites">Favorites</a>
+                    <% } else { %>
+                      <a class="nav-link" href="/campgrounds/myplaces">My places</a>
+                    <% } %>
+                  <% } %> 
                 <a class="nav-link" href="/campgrounds/new">New Campground</a>
-               
+                
             </div>
                 <form class="d-flex navbar-nav">
                     <input class="form-control me-2" type="search" placeholder="Search Place" name="searchTerm" aria-label="Search">

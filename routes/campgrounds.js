@@ -12,8 +12,8 @@ router.route('/')
     .get(catchAsync(campgrounds.index))
     .post(isLoggedIn, authorize('publisher', 'admin') , upload.array('image'), validateCampground, catchAsync(campgrounds.createCampground))
 
-
 router.get('/new', isLoggedIn, campgrounds.renderNewForm)
+router.get('/favorites', isLoggedIn, authorize('user'), catchAsync(campgrounds.getFavorites));
 
 router.route('/:id')
     .get(catchAsync(campgrounds.showCampground))
@@ -21,6 +21,8 @@ router.route('/:id')
     .delete(isLoggedIn,authorize('publisher', 'admin'),  isAuthor, catchAsync(campgrounds.deleteCampground));
 
 router.get('/:id/edit', isLoggedIn, isAuthor, catchAsync(campgrounds.renderEditForm))
+
+router.get('/:id/favorites', isLoggedIn, authorize('user'), catchAsync(campgrounds.addFavorite));
 
 
 
