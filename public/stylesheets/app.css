@@ -16,3 +16,25 @@
 p#reviewsNumber {
     font-size: 1.5rem;
 }
+
+.navbarphoto{
+    width: 2rem;
+    height: 2rem ;
+    overflow: hidden;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+}
+
+.reviewPhoto{
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+}
+
+.profilePicture{
+    width: 100%;
+    height: 300px;
+}

@@ -1,0 +1,23 @@
+<% layout('layouts/boilerplate')%>
+<div class="container d-flex justify-content-center align-items-center mt-3 mb-4">
+    <div class="row">
+        <div class="col-md-6 offset-md-3 col-xl-4 offset-xl-4">
+            <div class="card shadow">
+                <% if(currentUser.photo){ %>
+                    <img class="profilePicture" src="<%=currentUser.photo.url%>" alt="profile Picture">
+                    <% } else { %>
+                        <img class="profilePicture" src="https://res.cloudinary.com/emanueltejada/image/upload/v1616169865/photos/defaultprofilephoto_owhou1.png"
+                            alt="default profile picture">
+                        <% } %>
+                            <p class="m-3">
+                                <%= currentUser.username%>
+                            </p>
+                            <form  action="/user/<%=currentUser._id%>?_method=PUT" method="POST"
+                                enctype="multipart/form-data">
+                                <input class="m-3" type="file" name="photo">
+                                <input class="d-block m-3 btn btn-primary " type="submit" value="Submit">
+                            </form>
+            </div>
+        </div>
+    </div>
+</div>

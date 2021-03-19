@@ -1,0 +1,21 @@
+<% layout('layouts/boilerplate')%>
+    <div class="container d-flex justify-content-center align-items-center mt-3 mb-4">
+        <div class="row">
+            <div class="col-md-6 offset-md-3 col-xl-4 offset-xl-4">
+                <div class="card shadow">
+                    <% if(currentUser.photo){ %>
+                        <img class="profilePicture" src="<%=currentUser.photo.url%>" alt="profile Picture">
+                        <% } else { %>
+                            <img class="profilePicture"
+                                src="https://res.cloudinary.com/emanueltejada/image/upload/v1616169865/photos/defaultprofilephoto_owhou1.png"
+                                alt="default profile picture">
+                            <% } %>
+                                <p class="m-3">
+                                    <%= currentUser.username%>
+                                </p>
+                                <a class="btn btn-primary" href="/user/edit%>">Change Photo</a>
+
+                </div>
+            </div>
+        </div>
+    </div>

@@ -15,7 +15,16 @@ const storage = new CloudinaryStorage({
     }
 });
 
+const userPhoto = new CloudinaryStorage({
+    cloudinary,
+    params: {
+        folder: 'photos',
+        allowedFormats: ['jpeg', 'png', 'jpg']
+    }
+});
+
 module.exports = {
     cloudinary,
-    storage
+    storage,
+    userPhoto
 }

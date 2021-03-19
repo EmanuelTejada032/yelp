@@ -60,6 +60,8 @@ module.exports.showCampground = async (req, res,) => {
         return res.redirect('/campgrounds');
     }
     console.log(req.user);
+
+   
     
     res.render('campgrounds/show', { campground });
 }

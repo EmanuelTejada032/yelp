@@ -24,6 +24,14 @@
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
             <div class="navbar-nav ml-auto">
+                <% if(currentUser){%>
+                    <a class="nav-link" href="/user/<%= currentUser._id%>"><%=currentUser.username%></a>
+                <% } %>
+                <% if(currentUser && currentUser.photo){ %>
+                     <a class="nav-link" href="/user/<%= currentUser._id%>"><img class="navbarphoto" src="<%=currentUser.photo.thumbnail%>" alt="No image available"></a>
+                <% } else { %>
+                    <a class="nav-link" href="#"><img class="navbarphoto" src="https://res.cloudinary.com/emanueltejada/image/upload/v1616169865/photos/defaultprofilephoto_owhou1.png" alt="default picture"></a>
+                <% } %>
                 <% if(currentUser && currentUser.role === 'admin') { %>
                     <a class="nav-link" href="/admin">Admin</a>
                 <% } %> 
