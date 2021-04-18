@@ -32,7 +32,7 @@ const seedDB = async () => {
         const price = Math.floor(Math.random() * 20) + 10;
         const camp = new Campground({
             //YOUR USER ID
-            author: '6054e8e25758490a443046cf',
+            author: '6056381f6d3f1e16fc7c41dc',
             location: `${cities[random1000].city}, ${cities[random1000].state}`,
             title: `${sample(descriptors)} ${sample(places)}`,
             description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam dolores vero perferendis laudantium, consequuntur voluptatibus nulla architecto, sit soluta esse iure sed labore ipsam a cum nihil atque molestiae deserunt!',
@@ -46,13 +46,13 @@ const seedDB = async () => {
             },
             images: [
                 {
-                    url: 'https://res.cloudinary.com/emanueltejada/image/upload/v1610671000/YelpCamp/dalxzaf1se3lzydlohv4.jpg',
-                    filename: 'YelpCamp/dalxzaf1se3lzydlohv4.jpg'
+                    url: 'https://res.cloudinary.com/emanueltejada/image/upload/v1616254143/YelpCamp/camping3_dnrmvn.jpg',
+                    filename: 'YelpCamp/camping3_dnrmvn'
                     
                 },
                 {
-                    url: 'https://res.cloudinary.com/emanueltejada/image/upload/v1610671000/YelpCamp/rq2slzo4zl1kyboumfid.jpg',
-                    filename: 'YelpCamp/rq2slzo4zl1kyboumfid.jpg'
+                    url: 'https://res.cloudinary.com/emanueltejada/image/upload/v1616254082/YelpCamp/camping_eurohj.jpg',
+                    filename: 'YelpCamp/camping_eurohj'
                 }
             ]
         })
