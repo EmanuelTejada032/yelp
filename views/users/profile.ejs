@@ -5,16 +5,23 @@
                 <div class="card shadow">
                     <% if(currentUser.photo){ %>
                         <img class="profilePicture" src="<%=currentUser.photo.url%>" alt="profile Picture">
-                        <% } else { %>
-                            <img class="profilePicture"
-                                src="https://res.cloudinary.com/emanueltejada/image/upload/v1616169865/photos/defaultprofilephoto_owhou1.png"
-                                alt="default profile picture">
-                            <% } %>
-                                <p class="m-3">
-                                    <%= currentUser.username%>
-                                </p>
-                                <a class="btn btn-primary" href="/user/edit%>">Change Photo</a>
+                    <% } else { %>
+                    <img class="profilePicture"
+                            src="https://res.cloudinary.com/emanueltejada/image/upload/v1616169865/photos/defaultprofilephoto_owhou1.png"
+                            alt="default profile picture">
+                    <% } %>
 
+                    <div class="userInfo m-4">
+                        <p class="m-0">
+                            <span>Username:</span> <%= currentUser.username%>
+                        </p>
+                        <p class="m-0">
+                            <span>Current role:</span> <%= currentUser.role%>
+                        </p>  
+                    </div>
+                    
+                    <a class="btn btn-primary w-50 my-2 mx-auto" href="/user/edit%>">Change Photo</a>
+    
                 </div>
             </div>
         </div>

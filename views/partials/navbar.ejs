@@ -16,7 +16,10 @@
                       <a class="nav-link" href="/campgrounds/favorites">My places</a>
                     <% } %>
                   <% } %> 
-                <a class="nav-link" href="/campgrounds/new">New Campground</a>
+                <% if(currentUser && currentUser.role !== 'user') { %>
+                    <a class="nav-link" href="/campgrounds/new">New Campground</a>
+                <% } %>
+                
                 
             </div>
             <div class="navbar-nav ml-auto">

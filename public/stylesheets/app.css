@@ -57,3 +57,11 @@ p#reviewsNumber {
 .card img {
     max-height: 352px;
 }
+
+.userInfo{
+    font-size: 1.3rem;
+}
+
+.userInfo span {
+    font-weight: bold;
+}
