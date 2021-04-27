@@ -45,3 +45,15 @@ p#reviewsNumber {
     text-align: center;
     margin: 2rem auto;
 }
+
+.carousel{
+    max-height: 361px;
+}
+
+.carousel img{
+    height: 361px;
+}
+
+.card img {
+    max-height: 352px;
+}
