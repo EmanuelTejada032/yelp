@@ -111,7 +111,7 @@
         <% for(let review of campground.reviews) { %>
         <div class="card mb-3 ">
             <div class="card-body">
-                    <% if(currentUser.photo){ %>
+                    <% if(review.author.photo){ %>
                         <img class="reviewPhoto d-inline" src="<%=review.author.photo.url%>" alt="profile Picture">
                     <% } else { %>
                         <img class="reviewPhoto d-inline" src="https://res.cloudinary.com/emanueltejada/image/upload/v1618758206/photos/aecctck6miz2biaxyqv0.jpg"
