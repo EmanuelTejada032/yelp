@@ -25,7 +25,7 @@
             <div class="navbar-nav ml-auto">
 
                     <% if(currentUser){%>
-                        <a class="nav-link" href="/user/<%= currentUser._id%>"><%=currentUser.username%></a>
+                        <a class="nav-link" href="/user/<%= currentUser._id%>">Profile</a>
                     <% } %>
                     <% if(currentUser && currentUser.photo){ %>
                         <a class="nav-link p-0 mx-2" href="/user/<%= currentUser._id%>"><img class="navbarphoto p-0" src="<%=currentUser.photo.thumbnail%>" alt="No image available"></a>

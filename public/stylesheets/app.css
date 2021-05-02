@@ -65,3 +65,13 @@ p#reviewsNumber {
 .userInfo span {
     font-weight: bold;
 }
+
+@media screen and (max-width: 768px){
+    #cluster-map{
+        max-height: 60vh;
+    }
+
+    .navbarphoto{
+        display: none;
+    }
+}
