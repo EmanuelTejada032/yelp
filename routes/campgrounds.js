@@ -17,7 +17,7 @@ router.get('/favorites', isLoggedIn, authorize('user','publisher'), catchAsync(c
 
 router.route('/:id')
     .get(catchAsync(campgrounds.showCampground))
-    .put(isLoggedIn,authorize('publisher'), isAuthor, upload.array('image'), validateCampground, catchAsync(campgrounds.updateCampground))
+    .put(isLoggedIn,authorize('publisher', 'admin'), isAuthor, upload.array('image'), validateCampground, catchAsync(campgrounds.updateCampground))
     .delete(isLoggedIn,authorize('publisher', 'admin'),  isAuthor, catchAsync(campgrounds.deleteCampground));
 
 router.get('/:id/edit', isLoggedIn, isAuthor, catchAsync(campgrounds.renderEditForm))
